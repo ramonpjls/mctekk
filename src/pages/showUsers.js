@@ -48,6 +48,10 @@ function UserManagement() {
       });
   }, []);
 
+  const clear = () => {
+    localStorage.clear();
+  };
+
   return (
     <div>
       <Container className="header" style={pageHeader}>
@@ -55,7 +59,11 @@ function UserManagement() {
           Control de Usuarios
         </Typography>
         <Link style={{ textDecoration: "none" }} to="/">
-          <Button variant="contained" endIcon={<ExitToAppIcon />}>
+          <Button
+            onClick={clear}
+            variant="contained"
+            endIcon={<ExitToAppIcon />}
+          >
             Salir
           </Button>
         </Link>

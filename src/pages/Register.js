@@ -19,8 +19,6 @@ const isNumberRegx = /\d/;
 const specialCharacterRegx = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 const alphaExp = /[A-Z]*$/g;
 
-//todos los campos seran requeridos menos codigo sap y subarea
-
 const Register = () => {
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [error, setError] = useState(true);
@@ -47,6 +45,10 @@ const Register = () => {
     maxWidth: "100%",
     display: "flex",
     justifyContent: "space-between",
+  };
+
+  const clear = () => {
+    localStorage.clear();
   };
 
   const onChangePassword = (password) => {
@@ -96,11 +98,11 @@ const Register = () => {
         });
       })
       .catch((err) => {
-        console.warn(err);
         Swal.fire({
-          text: err?.errors.message,
+          text: err?.message,
           icon: "error",
         });
+        console.warn(err);
       });
   };
 
@@ -111,7 +113,11 @@ const Register = () => {
           Registro de Usuarios
         </Typography>
         <Link style={{ textDecoration: "none" }} to="/">
-          <Button variant="contained" endIcon={<ExitToAppIcon />}>
+          <Button
+            onClick={clear}
+            variant="contained"
+            endIcon={<ExitToAppIcon />}
+          >
             Salir
           </Button>
         </Link>
